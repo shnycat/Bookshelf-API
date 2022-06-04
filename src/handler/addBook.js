@@ -14,18 +14,16 @@ const addBook = (request, h) => {
   } = request.payload;
 
   if (!name || readPage > pageCount) {
-    // equals -> if name == undefined/null/''
-    const response = h.response({
-      status: 'fail',
-      message: `Gagal menambahkan buku. ${
-        !name
-          ? 'Mohon isi nama buku'
-          : 'readPage tidak boleh lebih besar dari pageCount'
-      }`,
-    });
-
-    response.code(400);
-    return response;
+    return h
+      .response({
+        status: 'fail',
+        message: `Gagal menambahkan buku. ${
+          !name
+            ? 'Mohon isi nama buku'
+            : 'readPage tidak boleh lebih besar dari pageCount'
+        }`,
+      })
+      .code(400);
   }
 
   const id = nanoid(16);
@@ -52,24 +50,23 @@ const addBook = (request, h) => {
   const bookAddedSuccessfully = books.filter((book) => book.id === id).length > 0;
 
   if (bookAddedSuccessfully) {
-    const response = h.response({
-      status: 'success',
-      message: 'Buku berhasil ditambahkan',
-      data: {
-        bookId: id,
-      },
-    });
-
-    response.code(201);
-    return response;
+    return h
+      .response({
+        status: 'success',
+        message: 'Buku berhasil ditambahkan',
+        data: {
+          bookId: id,
+        },
+      })
+      .code(201);
   }
 
-  const response = h.response({
-    status: 'error',
-    message: 'Buku gagal ditambahkan',
-  });
-  response.code(500);
-  return response;
+  return h
+    .response({
+      status: 'error',
+      message: 'Buku gagal ditambahkan',
+    })
+    .code(500);
 };
 
 module.exports = addBook;

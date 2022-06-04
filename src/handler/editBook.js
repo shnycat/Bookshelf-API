@@ -15,17 +15,16 @@ const editBook = (request, h) => {
   } = request.payload;
 
   if (!name || readPage > pageCount) {
-    const response = h.response({
-      status: 'fail',
-      message: `Gagal memperbarui buku. ${
-        !name
-          ? 'Mohon isi nama buku'
-          : 'readPage tidak boleh lebih besar dari pageCount'
-      }`,
-    });
-
-    response.code(400);
-    return response;
+    return h
+      .response({
+        status: 'fail',
+        message: `Gagal memperbarui buku. ${
+          !name
+            ? 'Mohon isi nama buku'
+            : 'readPage tidak boleh lebih besar dari pageCount'
+        }`,
+      })
+      .code(400);
   }
 
   const updatedAt = new Date().toISOString();
@@ -46,21 +45,20 @@ const editBook = (request, h) => {
       updatedAt,
     };
 
-    const response = h.response({
-      status: 'success',
-      message: 'Buku berhasil diperbarui',
-    });
-
-    response.code(200);
-    return response;
+    return h
+      .response({
+        status: 'success',
+        message: 'Buku berhasil diperbarui',
+      })
+      .code(200);
   }
 
-  const response = h.response({
-    status: 'fail',
-    message: 'Gagal memperbarui buku. Id tidak ditemukan',
-  });
-  response.code(404);
-  return response;
+  return h
+    .response({
+      status: 'fail',
+      message: 'Gagal memperbarui buku. Id tidak ditemukan',
+    })
+    .code(404);
 };
 
 module.exports = editBook;

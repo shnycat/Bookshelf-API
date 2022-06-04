@@ -5,24 +5,22 @@ const getBook = (request, h) => {
   const book = books.filter((b) => b.id === bookId)[0];
 
   if (book) {
-    const response = h.response({
-      status: 'success',
-      data: {
-        book,
-      },
-    });
-
-    response.code(200);
-    return response;
+    return h
+      .response({
+        status: 'success',
+        data: {
+          book,
+        },
+      })
+      .code(200);
   }
 
-  const response = h.response({
-    status: 'fail',
-    message: 'Buku tidak ditemukan',
-  });
-
-  response.code(404);
-  return response;
+  return h
+    .response({
+      status: 'fail',
+      message: 'Buku tidak ditemukan',
+    })
+    .code(404);
 };
 
 module.exports = getBook;
