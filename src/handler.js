@@ -82,7 +82,7 @@ const getBookByIdHandler = (request, h) => {
   const { bookId } = request.params;
   const book = books.filter((b) => b.id === bookId)[0];
 
-  if (book.id) {
+  if (book) {
     const response = h.response({
       status: 'success',
       data: {
