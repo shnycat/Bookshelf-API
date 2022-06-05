@@ -5,9 +5,11 @@ const getBooks = () => ({
   data:
     books.length > 0
       ? {
-          id: books.id,
-          name: books.name,
-          publisher: books.publisher,
+          books: books.map((book) => ({
+            id: book.id,
+            name: book.name,
+            publisher: book.publisher,
+          })),
         }
       : { books: [] },
 });
