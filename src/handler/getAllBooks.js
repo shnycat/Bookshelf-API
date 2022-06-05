@@ -1,6 +1,6 @@
 const books = require('../books');
 
-const getBooks = () => ({
+const getAllBooks = () => ({
   status: 'success',
   data:
     books.length > 0
@@ -14,4 +14,4 @@ const getBooks = () => ({
       : { books: [] },
 });
 
-module.exports = getBooks;
+module.exports = getAllBooks;
