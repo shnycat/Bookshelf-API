@@ -10,7 +10,7 @@ const deleteBook = (request, h) => {
     return h
       .response({
         status: 'success',
-        message: 'Buku berhasil dihapus.',
+        message: 'Buku berhasil dihapus',
       })
       .code(200);
   }
