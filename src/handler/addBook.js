@@ -33,21 +33,22 @@ const addBook = (request, h) => {
   const newBook = {
     id,
     name,
-    year,
-    author,
-    summary,
-    publisher,
-    pageCount,
-    readPage,
+    year: year || undefined,
+    author: author || undefined,
+    summary: summary || undefined,
+    publisher: publisher || undefined,
+    pageCount: pageCount || undefined,
+    readPage: readPage || undefined,
     finished: pageCount === readPage,
-    reading,
+    reading: reading || undefined,
     insertedAt,
     updatedAt,
   };
 
   books.push(newBook);
 
-  const bookAddedSuccessfully = books.filter((book) => book.id === id).length > 0;
+  const bookAddedSuccessfully =
+    books.filter((book) => book.id === id).length > 0;
 
   if (bookAddedSuccessfully) {
     return h
